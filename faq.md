@@ -1,4 +1,3 @@
-*Note: It may be helpful to review this spreadsheet before each class, but I will typically put up the partners spreadsheet before lab starts. If you know you will be sick or otherwise miss class, e-mailing me beforehand helps me rearrange teams.*
 
 ## Obtaining a Khoury account
 
