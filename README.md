@@ -5,8 +5,10 @@
 
 ## Read the FAQ
 
-[Monorepo F.A.Q](./faq.md) -- Answers questions like if you must use the Khoury servers, if you are allowed to share individual assignments(NO!), etc.
+[Monorepo F.A.Q](./faq.md) -- Answers questions like if you must use the Khoury servers(yes), if you are allowed to share individual assignments(NO!), how to get an account, etc.
 
 ## Partners Spreadsheet
 (Lookup your weekly lab partner(s) here) 
-https://docs.google.com/spreadsheets/d/1qVc8nBY6Yi-S0Jd9D6641zo9rdCBRMKoUMPvqxOhaLE/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1IrzCdFdwBJpGlJXrVWKrxBrynGCDemrM0-uhR4zEvY8/edit?usp=sharing
+
+
