@@ -105,140 +105,52 @@ In the Greg Law video, he begins to investigate a Core dump file. What exactly i
 
 Read here: https://wiki.archlinux.org/index.php/Core_dump
 
-# Part 2 Assembly - Writing Functions in Assembly
+# Part 2 - Assembly - A first program
 
-We have previously looked at some examples of assembly code. And we additionally have an understanding of how the stack stores data in memory by pushing in data. "Removing" data is then done by manipulating the stack pointer which is stored in the %rsp register (remember, %rsp always points to the top of the stack). There are some concerns however that you may have in your mind:
+The first task is to actually just write a 'hello world' in assembly.
 
-- How do I write 'functions' in assembly to make assembly code writing *easier* and more *maintainable*.?
-- If we only have 16 registers, how can I write functions with a lot of arguments?
-- How do I jump into a function and return back to where I left off?
+- Enter the following text into a file called *hello.s*
+- ```asm
+	  # Example for x86-64 processor using AT&T Style syntax
+	.global _start
 
-You might have yet more questions even--and that is wonderful! Remember, assembly programming is sort of similar to solving a puzzle and getting everything to fit just right. Let me however remind you to the jobs of a procedure/function/method to orient you with what we must achieve:
+	.text
 
-1. Pass control
-	- Start executing from start of procedure.
-	- Return back to where we called from.
-2. Pass data
-	- Procedure arguments and return value are passed.
-3. Memory management
-	- Memory allocated in the procedure, and then deallocated on return.
-4. Try to do this in the most minimal way.
+	_start:
+		# Write a message to the screen
+		mov $1, %rax
+		mov $1, %rdi
+		mov $message, %rsi
+		mov $13, %rdx
+		syscall
 
-## Background on functions
+		# Exit the program
+		mov $60, %rax
+		xor %rdi, %rdi
+		syscall
 
-<img align="right" width="400px" src="http://www.cs.virginia.edu/~evans/cs216/guides/stack-convention.png" alt="Stack from http://www.cs.virginia.edu/~evans/cs216/guides/x86.html">
+	message:
+		.ascii "Hello, World\n"
+  ```
+- Save the file and then we will assemble the program using the GNU Assembler (https://en.wikipedia.org/wiki/GNU_Assembler)
+  - `gcc -c hello.s`
+  - This step builds an object file (.o suffix).
+  - We now need to create an executable object file using our previously created hello.o file using a tool called *ld*
+  - `ld hello.o -o hello`
+    - Run `man ld` to learn more.
+  - When this has been completed, push hello.s to your repo, and move on!
 
-Writing a function in assembly almost follows a 'design recipe', and it is very useful to draw a picture of the stack (an example is shown to the right) as you write your function. Think of a function as broken into three different parts.
+There are a few interesting things with this program.
+1. First, there is a *global* symbol. The global sets up the starting point, as our program needs some entry point. You could think of '_start' as 'main' like in a C program. You can learn more here: http://web.mit.edu/gnu/doc/html/as_7.html#SEC89
+2. The next directive (remember, lines that start with a '.' are directives) is .text. These are where our instructions start. https://stackoverflow.com/questions/14544068/what-are-data-and-text-in-x86
+3. The next few lines are moving some values into registers. The first statement moves the immediate value $1 into register %rax. A few more lines down we see a syscall.
+	  1. What is a syscall? In short, it is a call to a function built into the operating system (More here: https://www.geeksforgeeks.org/operating-system-introduction-system-call/).
+	  2. To figure out which syscall it is, use this resource: https://filippo.io/linux-syscall-table/
+4. Finally at the end there is a label ('message:') with a string literal (.ascii "Hello, World\n"). https://docs.oracle.com/cd/E26502_01/html/E28388/eoiyg.html
 
-1. The setup - Sets up our stack
-2. The body - Does the work
-3. The finish/return - Pops things off the stack so we can resume execution to where we left off.
+## Aside - Machine Representation of Numbers
 
-### The setup
-
-This is where we are starting the execution of our function. Typically, it looks something like this
-
-```asm
-pushq %rbp
-movq %rsp, %rbp
-pushq %rbx
-```
-
-### The body
-
-This is where the work is done.
-
-### The finish/return
-
-This is where we have to pop our stack, because we are done with our temporary (i.e. local) variables. Our temporaries or local variables are things like the arguments of a function that were passed in. Typically this looks something like this:
-
-```asm
-movq -8(%rbp),%rbx
-movq %rbp, %rsp
-popq %rbp
-ret
-```
-
-## Assembly Example 1
-
-I want to provide a few assembly examples, so you can see how the work is done. Try these examples first before jumping straight into assembly programming. This first example is of using a subroutine, or a sort of 'function call' with no arguments. This is a nice way to keep our code relatively clean.
-
-```asm
-# Assemble with
-# 1.) gcc - c funcion.s
-# 2.) ld function.o -o function
-# 3.) ./function
-.global _start
-
-# Here we have a label, and we directly place some ASCII text
-# into our program.
-.welcome:
-    .ascii "Welcome to this example\12" # A 24 character long
-                                        # string. Note the \12
-                                        # at the end is a 'line feed'
-.text
-
-# _printWelcome is a subroutine (i.e. a block of code we can execute)
-# This is one way to 'modularize' our code.
-_printWelcome:
-    movq $1, %rax
-    movq $1, %rdi
-    leaq .welcome,%rsi # Load effective address, is a
-    movq $24, %rdx
-    syscall
-    ret
-
-
-# A subroutine to exit the program
-_exit:
-    movq $60, %rax
-    xor %rdi, %rdi
-    syscall
-
-# The entry point into our program
-_start:
-
-    call _printWelcome
-    call _exit
-```
-
-## Assembly Example 2
-
-Here is an example of a simple function that is provided by a nice set of videos: https://www.youtube.com/watch?v=S-ZDUYMoy3Y&list=PLHMcG0zmCZcj7hKyHgQGGEZ41UWKaISKU See if you can follow along! I recommend watching all of the videos to truly understand the work being done--they might be helpful for Task 1!
-
-## Task 1
-
-Your task is to write two assembly functions--an `long add(long, long)` and `long subtract(long,long)` function in a file called *function.s*. A user will select which of the two functions to execute before terminating. A sample of the output from your program should look something like the following.
-
-```
-Select an operation
-1 - add
-2 - subtract
-1
-6
-5
-11
-```
-
-Here is the same output with my comments (To make it clear)
-
-```
-Select an operation # Use a syscall to write this out
-1 - add		    # Use a syscall to write this out
-2 - subtract        # Use a syscall to write this out
-1 		    # The user selected '1'
-6                   # The first input
-5                   # The second input
-11                  # 6+5 = 11, so print out '11' 
-                    # Note: if this had been subtraction 
-		    # (i.e. user selected '2' at the start), it would be 6-5 = 1                   
-```
-
-Some things I foresee in this assignment that may be tricky are:
-
-- How to get user input.
-- Think about if we read in a '1' is that stored as a *long with a value of 1* or some other representation of the ascii 1.
-	- What if we sum to relatively large numbers, like 5000 and 6000? How would we output them, and would it be useful to have a function to do so?
+  * Note: it may be beneficial to look at this ascii table to see how numbers and letters are represented. https://www.asciitable.com Remember, we do not have a 'text' datatype in assembly. Text instead is represented by numbers shown in the ascii table.
 
 # Part 3 - Cycle Count Tool
 
@@ -301,14 +213,12 @@ Con:
 
 # Rubric
 
-- 10% Part 1 - GDB
+- 20% Part 1 - GDB
   - Did you modify the README with the correct answers to what the bug was in prog1?
-- 40% Part 2 - Does your function.s work.
+- 20% Part 2 - Assembly program
   - 10% for a correct output.
-  - 10% for a correct add function
-  - 10% for a correct subtract function
   - 10% for structure of program (no weird formatting, no wasteful instructions)
-- 50% Part 3 - Cycle Count Tool
+- 60% Part 3 - Cycle Count Tool
   - 10% Did you modify the comments and answer the questions in barebones.s
   - 30% Does your cycle count tool work? 
   	- i.e. no memory leaks
