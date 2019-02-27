@@ -43,11 +43,43 @@ Here are some suggested resources to get started.
 * Tmux tutorial - https://www.youtube.com/watch?v=BHhA_ZKjyxo (11:23)
 
 
+(This is an ungraded task--only work on this if you finish the deliverable). You will have to do a little bit of work to figure out how to open and read from files for this task.
+
+# Part 3 - Linked List and Data
+
+## First task - obtain some data
+
+Provided within the lab is a shell script (**data.sh**) to obtain some real world data. Provided below are some examples for obtaining some data that we can read in using shell scripts. You can choose whichever data you and your partner like. 
+
+Running the script with `sh data.sh` will bring in the data and save it to a text file or a spreadsheet. You could then read this data into a linked list and display it.
+
+```shell
+# Column selector for Red Sox data (prints out index and column name):
+curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/red_sox_history.csv | awk -F ',' '{ if (NR ==1)  for (i=1; i<=NF; i++){ print i, $i } }
+
+# Win column from Red Sox historical data:
+curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/red_sox_history.csv | awk -F ',' '{ if (NR > 2)  { print $5 } }' > sox_wins.txt
+
+# An alternative win column selector (Now you know about curl and wget)
+wget -O - http://www.mshah.io/comp/Fall18/Systems/Lab/2/baseballdata.csv | cut -d ',' -f 5 | tail -n +2 > data.txt
+
+# There are more public domain texts at the Guttenberg project https://www.gutenberg.org/ 
+# Below are some other examples.
+
+# US Declaration of Independence broken up at each comma:
+curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/usdeclar.txt | awk -F ',' '{ if (NR > 6)  for (i=1; i<=NF; i++) { print $i } }' > doi-segment.txt
+
+# US Declaration of Independence word by word:
+curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/usdeclar.txt | awk '{ if (NR > 6)  for (i=1; i<=NF; i++) { print $i } }' > doi-word.txt
+
+```
+
+Notes:
+- Depending on the data you read in, it may be text or integer based--adapt your function signatures as needed.
+
+
 ## More resources to help
 
-- There is a lovely user manual on Virtual Box here: https://www.virtualbox.org/manual/
-- There is another example of installing an older Ubuntu on an older version of virtual box here with pictures: https://askubuntu.com/questions/142549/how-to-install-ubuntu-on-virtualbox
-- If you are not comfortable with compiling a C program on the terminal, take a look at this resource: https://www.cs.fsu.edu/~myers/howto/g++compiling.txt
 - Hackerrank has an excellent series of shell tutorials here: https://www.hackerrank.com/domains/shell/bash
   - I highly recommend going through them if you are not comfortable with the shell.
 - **If you accidently delete something** you can navigate to `cd .snapshot/` which will show files that have been periodically backed up for that current directory. This is yet anothe reason to make sure you are working within the CCIS systems which provide this backup service.
