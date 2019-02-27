@@ -1,7 +1,7 @@
 # Terminal and Linked List
-<img align="right" width="150px" src="./images/Color-of-the-LinkedIn-Logo.jpg">
+<img align="right" width="150px" src="https://support.rstudio.com/hc/article_attachments/115019778247/2017-08-11_13-53-02-dropdown-new-v2.png">
 
-> "From Algorithms to Systems!"
+> "Refresh! We are now in Systems!"
 
 We have previously done quite a bit of work with data structures such as a linked list. Now we are going to connect it with using our terminal to grab some data.
 
