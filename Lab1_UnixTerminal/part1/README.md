@@ -3,7 +3,9 @@
 
 > "Refresh! We are now in Systems!"
 
-We have previously done quite a bit of work with data structures such as a linked list. Now we are going to connect it with using our terminal to grab some data.
+We have previously done quite a bit of work with data structures such as a linked list. Now we are going to connect it with using our terminal to grab some data and warm up our systems skills.
+
+This will also prepare us for our homework, where we are going to automate some of our lives!
 
 # Part 0 - SSH and git pull
 
