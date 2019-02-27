@@ -19,7 +19,7 @@ If for some reason you are having troubles, you can always create a new copy of 
 
 <img align="right" width="300px" src="https://joshldavis.com/img/vim/tabs.gif">
 
-**Yes you should be using VIM and Tmux you are a systems programmer now. :) **
+**Yes you should be using VIM and Tmux you are a systems programmer now** :)
 
 ### Student and Teacher Dialouge
 
