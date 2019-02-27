@@ -40,6 +40,8 @@ Here are some suggested resources to get started.
 
 # Part 2 - Linked List and Data (Revisited!)
 
+Our goal is going to be to bring in some data from the real world, and then load it into our C programs.
+
 ## First task - obtain some data
 
 Provided within the lab is a shell script (**data.sh**) to obtain some real world data. Provided below are some examples for obtaining some data that we can read in using shell scripts. You can choose whichever data you and your partner like. 
@@ -70,6 +72,7 @@ curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/usdeclar.txt | awk 
 Notes:
 - Depending on the data you read in, it may be text or integer based--adapt your function signatures as needed.
 
+## Second Task - File I/O
 
 ## More resources to help
 
