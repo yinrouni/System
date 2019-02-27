@@ -23,10 +23,12 @@ The tutorial will be done purely in text and and within a file called 'myscript.
 
 Examples of a non-trivial scripts
 
-* Sort a particular column of data from a .csv file (e.g. stock prices). Then print out the top ten values, and the average of that column of data.
-* Write a shell script that allows you to query information about your computer system from a menu of options. Users might like to know information like hard drive space, if a graphics card is available, how fast the cpu is, etc.
+* Sort a particular column of data from a .csv file (e.g. stock prices). 
+    * Then print out the top ten values, and the average of that column of data.
+* Write a shell script that allows you to query information about your computer system from a menu of options. 
+    * Users might like to know information like hard drive space, if a graphics card is available, how fast the cpu is, etc.
 * Write a shell script that downloads a webpage (using wget, perhaps to grab some json data), then parses some of the data, and prints it to the terminal. 
-* You can use your imagination to create other examples.
+* You can use your imagination to create other examples!
 
 # Part 1 - myScript.sh
 
@@ -50,6 +52,15 @@ ls
 ls | wc -l
 ```
 
+Some ideas for improving the script above script to earn closer to an A are the following:
+
+- Print out a 'tree' visualization of the directory you are searching.
+- Output the amount of file space each directory is taking up
+- Output the directories in color
+- Output some graphical patterns after running the command.
+- List the history of the last 10 commands that have been run.
+
+* Some inspiration for developing shell scripting skills can be found here: https://www.hackerrank.com/domains/shell
 
 # Resources to help
 
