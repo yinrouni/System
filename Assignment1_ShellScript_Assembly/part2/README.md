@@ -220,7 +220,7 @@ Con:
   - 10% for structure of program (no weird formatting, no wasteful instructions)
 - 60% Part 3 - Cycle Count Tool
   - 10% Did you modify the comments and answer the questions in barebones.s
-  - 30% Does your cycle count tool work? 
+  - 40% Does your cycle count tool work? 
   	- i.e. no memory leaks
 	- Number of instructions are correctly counted
 		- (Are MoVq, MOVQ, or movq all counted?)
