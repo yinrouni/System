@@ -13,13 +13,11 @@ We have previously done quite a bit of work with data structures such as a linke
 
 If for some reason you are having troubles, you can always create a new copy of your monorepo by running `git clone https://github.com/COURSENAME/monorepo-yourUserNameHere` in a separate directory.
 
-# Part 1 - VIM and TMUX (Wait--do I really have to use these tools??)
+# Part 1 - VIM and TMUX Round 2 (Wait--do I really have to use these tools??)
 
 <img align="right" width="300px" src="https://joshldavis.com/img/vim/tabs.gif">
 
-**Yes--you should be using VIM and Tmux you are a systems programmer now. :) **
-
-Figuring out a good workflow on Unix, Mac, (and even windows) is an important part of becoming a good programmer. My work environment (and the suggested one so I can help you during class), is to use the combination of the VIM text editor and tmux window manager to program your assignments in.
+**Yes you should be using VIM and Tmux you are a systems programmer now. :) **
 
 ### Student and Teacher Dialouge
 
@@ -36,7 +34,7 @@ Here are some suggested resources to get started.
 * Type *man tmux* in a terminal.
 * Tmux tutorial - https://www.youtube.com/watch?v=BHhA_ZKjyxo (11:23)
 
-(This is an ungraded task--only work on this if you finish the deliverable). You will have to do a little bit of work to figure out how to open and read from files for this task.
+(This is an ungraded task--only work on this if you finish the deliverable). You will have to do a little bit of work to figure out how to open and read from files for this task.)
 
 # Part 2 - Linked List and Data (Revisited!)
 
