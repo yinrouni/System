@@ -5,25 +5,19 @@
 
 We have previously done quite a bit of work with data structures such as a linked list. Now we are going to connect it with using our terminal to grab some data.
 
-## Part 1 - SSH
+# Part 0 - SSH and git pull
 
-**I don't care what operating system you use locally as long as you have a terminal and internet access**
+1. First open a terminal and ssh into the Khoury servers ``` ssh khoury_user_name_here@login.khoury.neu.edu ```
+2. Navigate to your Monorepo directory(Use the `cd` command to change directory, `ls` to see files, and `pwd` to see your path)
+3. When you are within your Monorepo, do a ```git pull```. This will add all of the files I have previously pushed into your repositories.
 
-* For Windows Users installing Putty is sufficient. (https://www.putty.org/)
-  * You might prefer to also install the bash shell from the Windows Store as well. (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-* For Linux/Mac users, you already have a terminal available! Just search for 'terminal'.
-* We additionally will install a virtual machine which you may work from, and which has a terminal.
-* Once your terminal is open, 'ssh' into ccis with: `ssh ccis_user_name_here@login.ccs.neu.edu`
-  * If for some reason you do not have a ccis username, [follow these instructions](https://www.ccis.northeastern.edu/systems/getting-started/)
-* After you have successfully ssh'd, you are now running programs on the ccis servers (i.e. not locally on your machine).
+If for some reason you are having troubles, you can always create a new copy of your monorepo by running `git clone https://github.com/COURSENAME/monorepo-yourUserNameHere` in a separate directory.
 
-<center><img align="center"  src="./images/ssh.PNG"></center>
-
-# Part 2 - VIM and TMUX
+# Part 1 - VIM and TMUX (Wait--do I really have to use these tools??)
 
 <img align="right" width="300px" src="https://joshldavis.com/img/vim/tabs.gif">
 
-(Note this part is ungraded--but you are required to do it!)
+**Yes--you should be using VIM and Tmux you are a systems programmer now. :) **
 
 Figuring out a good workflow on Unix, Mac, (and even windows) is an important part of becoming a good programmer. My work environment (and the suggested one so I can help you during class), is to use the combination of the VIM text editor and tmux window manager to program your assignments in.
 
@@ -42,10 +36,9 @@ Here are some suggested resources to get started.
 * Type *man tmux* in a terminal.
 * Tmux tutorial - https://www.youtube.com/watch?v=BHhA_ZKjyxo (11:23)
 
-
 (This is an ungraded task--only work on this if you finish the deliverable). You will have to do a little bit of work to figure out how to open and read from files for this task.
 
-# Part 3 - Linked List and Data
+# Part 2 - Linked List and Data (Revisited!)
 
 ## First task - obtain some data
 
