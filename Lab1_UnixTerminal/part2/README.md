@@ -63,7 +63,7 @@ I **strongly** recommend using the godbolt tool (https://godbolt.org/) to write 
 
 Then you are required to get practice generating the assembly from your compiler (as instructed below).
 
-## Compiler generated assembly 1 
+## Compiler generated assembly 1 - Swap
 
 - Write a C program that swaps two integers(in the main body of code).
   - Save, Compile, and Run the program to verify it works.
@@ -77,7 +77,7 @@ Then you are required to get practice generating the assembly from your compiler
 - diff syntax
   - Use: `diff -y swap_int.s swap_long.s`
 
-## Compiler generated assembly 2 
+## Compiler generated assembly 2 - Functions
 
 - Write a C program that swaps two integers in a **function** (You may use today's slide as a reference)
   - Save, Compile, and Run the program to verify it works.
