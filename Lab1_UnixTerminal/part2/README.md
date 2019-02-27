@@ -2,7 +2,7 @@
 
 > "Nearing Machine Code Representation"
 
-Not so long ago (in a galaxy not so far away), programmers wrote most of their code in assembly. While programmers today primarily use higher level languages (Python, C, etc), it is not uncommon to debug the assemble of your code. These higher level languages afterall typically translate down to an assemble or assembly-like language. 
+Not so long ago (in a galaxy not so far away), programmers wrote most of their code in assembly. While programmers today primarily use higher level languages (Python, C, etc), it is not uncommon to debug the assembly of your code. These higher level languages afterall typically translate down to an assemble or assembly-like language. 
 
 If you are interested in cybersecurity and reverse engineering, folks often work and analyze assembly code. For high performance applications like games, programmers may write very optimized code using assembly to get things *just* right. If you are working in hardware or an embededd device, you might also do some assembly programming, as other languages environments are too bulky to support on a small device. Even web developers are using something called 'webassembly'. Hmm, the list is getting long here--I think the point is that learning assembly has quite some relevance! Let's dig in and get some practice.
 
