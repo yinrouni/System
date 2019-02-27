@@ -1,15 +1,3 @@
-TODO Please edit the following information in your assignment
-
-- Name:
-- How many hours did it take you to complete this assignment?
-- Did you collaborate with any other students/TAs/Professors?
-- Did you use any external resources? (Cite them below)
-  - tbd
-  - tbd
-- (Optional) What was your favorite part of the assignment?
-- (Optional) How would you improve the assignment?
-
-
 # Introduction
 
 For this assignent you are going to be practicing some [Assembly programming](https://en.wikipedia.org/wiki/Assembly_language) and learning other low level skills! Note that, in the past when teaching assembly, I have noted that this can be a more difficult assignment for the following reasons:
