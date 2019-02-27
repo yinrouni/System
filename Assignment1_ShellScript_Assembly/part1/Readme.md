@@ -30,7 +30,7 @@ Examples of a non-trivial scripts
 
 # Part 1 - myScript.sh
 
-<img align="right" width="300px" src="https://cdn-images-1.medium.com/max/1600/1*MaSfT-bQOxfWnKjFPxMg6g.gif">
+<img width="400px" src="https://cdn-images-1.medium.com/max/1600/1*MaSfT-bQOxfWnKjFPxMg6g.gif">
 
 ## Very Brief Example Tutorial (Template)
 (Note this example is fairly trivial, probably worth a C-. You can use it as a template)
