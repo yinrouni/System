@@ -57,17 +57,15 @@ ls | wc -l
 
 # Rubric
 
-* 30% Was your tutorial 1-2 pages (estimate this as 2 regular pieces of printed paper)
+* 33.4% Was your tutorial 1-2 pages (estimate this as 2 regular pieces of printed paper)
     * (If you decided you were doing something so cool it had to be longer, was this well justifed)
     * If your tutorial is your actual script with comments in it, then it should be able to run. Otherwise, you should also have a script file that can actually be run accompanying your tutorial.
-* 30% Polish
+* 33.3% Polish
     * Was the tutorial well polished, did something useful, and did not contain any bugs?
-* 30% Presentation
+* 33.3% Presentation
     * Was the writing presented in a clear manner in your own voice (i.e. I should not be able to Google it).
   * (Please indicate in your submission at the top if these tutorials can be shared on our piazza board)
   * (The very brief tutorial example I gave would probably earn a C- at best :) Go beyond!)
-* 10% Take a screenshot of your virtual environment running. Name it 'linux.jpg'
-  * Make sure to 'commit' this file to the repo in this directory.
 
 * Note: Your code **must** run on the CCIS machines. That is where you should test it, and this is where we grade it!
 * Note: You must also commit any additional files into your repository so we can test your code.
