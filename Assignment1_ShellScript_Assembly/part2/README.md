@@ -1,5 +1,3 @@
-# Due Date: October 4, 2018 at 11:59 PM.
-
 TODO Please edit the following information in your assignment
 
 - Name:
