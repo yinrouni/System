@@ -1,5 +1,5 @@
 # Terminal and Linked List
-<img align="right" width="150px" src="https://support.rstudio.com/hc/article_attachments/115019778247/2017-08-11_13-53-02-dropdown-new-v2.png">
+<img align="right" width="300px" src="https://support.rstudio.com/hc/article_attachments/115019778247/2017-08-11_13-53-02-dropdown-new-v2.png">
 
 > "Refresh! We are now in Systems!"
 
