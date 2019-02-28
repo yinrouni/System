@@ -1,13 +1,8 @@
 # Introduction
 
-For this assignent you are going to be practicing some [Assembly programming](https://en.wikipedia.org/wiki/Assembly_language) and learning other low level skills! Note that, in the past when teaching assembly, I have noted that this can be a more difficult assignment for the following reasons:
+For this assignent you are going to be practicing some [Assembly programming](https://en.wikipedia.org/wiki/Assembly_language) and learning other low level skills! For this assignment we are taking a small jump into the assembly. In future courses, you may write some assembly from scratch!
 
-1. You cannot simply dive into the code without a plan.
-2. You really should do the readings, or at least study an assembly cheat sheet before and while you are attempting the assignment.
-3. You should use the [compiler generated assembly](https://godbolt.org/) as a helper--but only use really really small examples to test your understanding (It will be obvious if you write your code in C, and submit the assembly--you may not do that). 
-4. Luckily--for this assignment we are taking a small jump into the assembly. In future courses, you may write some assembly from scratch!
-
-**Note** It is important that you work on the assignment on the ccis servers (That is where you are testing, and your personal machine may have a different architecture!). I recommend using a text editor like vim, nano, or emacs while working remotely. Practicing using these tools over time will help you streamline an optimal workflow weather you are working remotely or on your local desktop.
+**Note** It is important that you work on the assignment on the Khoury servers (That is where you are testing, and your personal machine may have a different architecture!). You should be using a text editor like vim, nano, or emacs while working remotely. Practicing using these tools over time will help you streamline an optimal workflow weather you are working remotely or on your local desktop.
 
 # Part 1 - GDB Introduction 
 
@@ -36,9 +31,9 @@ int main(void){
 ```
 
 Compile the program with debug symbols(The *-g* flag does this).
-`gcc hello2.c -g -o hello2`
-
-`gdb ./hello2`
+- `gcc hello2.c -g -o hello2`
+- `gdb ./hello2`
+- Then run the program by typing `r` when inside gdb.
 
 ## GDB TUI (Text User Interface)
 
