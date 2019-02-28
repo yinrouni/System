@@ -63,7 +63,7 @@ Some ideas for improving the script above script to earn closer to an A are the 
   * (Please indicate in your submission at the top if these tutorials can be shared on our piazza board)
   * (The very brief tutorial example I gave would probably earn a C- at best :) Go beyond!)
 
-* Note: Your code **must** run on the CCIS machines. That is where you should test it, and this is where we grade it!
+* Note: Your code **must** run on the Khoury machines. That is where you should test it, and this is where we grade it!
 * Note: You must also commit any additional files into your repository so we can test your code.
   * Points will be lost if you forget!
 
