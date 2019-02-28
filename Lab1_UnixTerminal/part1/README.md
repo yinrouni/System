@@ -64,6 +64,7 @@ Now that we have some data,
 
 ## More resources to help
 
+- C File I/O can be further read about here: https://www.tutorialspoint.com/cprogramming/c_file_io.htm
 - Hackerrank has an excellent series of shell tutorials here: https://www.hackerrank.com/domains/shell/bash
   - I highly recommend going through them if you are not comfortable with the shell.
 - **If you accidently delete something** you can navigate to `cd .snapshot/` which will show files that have been periodically backed up for that current directory. This is yet anothe reason to make sure you are working within the CCIS systems which provide this backup service.
