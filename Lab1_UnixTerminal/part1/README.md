@@ -38,41 +38,29 @@ Here are some suggested resources to get started.
 
 (This is an ungraded task--only work on this if you finish the deliverable). You will have to do a little bit of work to figure out how to open and read from files for this task.)
 
-# Part 2 - Linked List and Data (Revisited!)
+# Part 2 - Loading Data (Revisited!)
 
-Our goal is going to be to bring in some data from the real world, and then load it into our C programs.
+Our goal is going to be to bring in some data from the real world, and then load it into our C programs using some basic File I/O operations.
 
 ## First task - obtain some data
 
-Provided within the lab is a shell script (**data.sh**) to obtain some real world data. Provided below are some examples for obtaining some data that we can read in using shell scripts. You can choose whichever data you and your partner like. 
-
-Running the script with `sh data.sh` will bring in the data and save it to a text file or a spreadsheet. You could then read this data into a linked list and display it.
+Provided within the lab is a shell script (**data.sh**) to obtain some real world data. You should type in the example shell program provided below into **data.sh** to learn some new terminal commands.. 
 
 ```shell
-# Column selector for Red Sox data (prints out index and column name):
-curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/red_sox_history.csv | awk -F ',' '{ if (NR ==1)  for (i=1; i<=NF; i++){ print i, $i } }
-
-# Win column from Red Sox historical data:
-curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/red_sox_history.csv | awk -F ',' '{ if (NR > 2)  { print $5 } }' > sox_wins.txt
-
-# An alternative win column selector (Now you know about curl and wget)
+# Boston Red Sox win column selector (Now you know about wget, cut, tail, and output)
 wget -O - http://www.mshah.io/comp/Fall18/Systems/Lab/2/baseballdata.csv | cut -d ',' -f 5 | tail -n +2 > data.txt
-
-# There are more public domain texts at the Guttenberg project https://www.gutenberg.org/ 
-# Below are some other examples.
-
-# US Declaration of Independence broken up at each comma:
-curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/usdeclar.txt | awk -F ',' '{ if (NR > 6)  for (i=1; i<=NF; i++) { print $i } }' > doi-segment.txt
-
-# US Declaration of Independence word by word:
-curl -s http://www.ccs.neu.edu/home/awjacks/cs3650f18/Labs/2/usdeclar.txt | awk '{ if (NR > 6)  for (i=1; i<=NF; i++) { print $i } }' > doi-word.txt
 
 ```
 
-Notes:
-- Depending on the data you read in, it may be text or integer based--adapt your function signatures as needed.
+- wget is a program for connecting to online resources and grabbing data
+- cut is a program for 'selecting' a column of data.
+- tail is a program that retrieves the last *n* lines of a file (head returns the first *n* lines)
+- The final `>` mark outputs the file as a .txt file.
 
 ## Second Task - File I/O
+
+Now that we have some data, 
+
 
 ## More resources to help
 
@@ -82,10 +70,10 @@ Notes:
 
 ## Deliverable
 
-* Copy and Paste the output from the command-line interface of you running five different terminal commands above into a file called "output.txt" (no capitalization, exactly as named.)
-  * Make sure to 'add/commit/push' this file to the repo in this directory.
-* Modify the file called 'main.c' in your respository containing the power example.
-  * Make sure to 'add/commit/push' this file to the repo in this directory.
+* Complete the data.sh script to pull in Red Sox wins over time.
+  * Make sure to 'add/commit/push' both the data.sh and data.txt file to the repo in this directory.
+* Fill in the fileread.c program.
+  * Make sure to 'add/commit/push' fileread.c file to the repo in this directory..
   
 ## Going Further
 
