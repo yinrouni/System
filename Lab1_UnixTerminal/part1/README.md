@@ -52,10 +52,11 @@ wget -O - http://www.mshah.io/comp/Fall18/Systems/Lab/2/baseballdata.csv | cut -
 
 ```
 
-- wget is a program for connecting to online resources and grabbing data
-- cut is a program for 'selecting' a column of data.
-- tail is a program that retrieves the last *n* lines of a file (head returns the first *n* lines)
+- [wget](https://linux.die.net/man/1/wget) is a program for connecting to online resources and grabbing data
+- [cut](https://linux.die.net/man/1/cut) is a program for 'selecting' a column of data.
+- [tail](https://linux.die.net/man/1/tail) is a program that retrieves the last *n* lines of a file (head returns the first *n* lines)
 - The final `>` mark outputs the file as a .txt file.
+- In between each command there is a pipe `|` which gets the output from one command, and makes it the input to the next command.
 
 ## Second Task - File I/O
 
