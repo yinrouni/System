@@ -102,7 +102,7 @@ Read here: https://wiki.archlinux.org/index.php/Core_dump
 
 # Part 2 - Assembly - A first program
 
-The first task is to actually just write a 'hello world' in assembly.
+Let us dive into assembly by first writing a 'hello world' in assembly.
 
 - Enter the following text into a file called *hello.s*
 - ```asm
