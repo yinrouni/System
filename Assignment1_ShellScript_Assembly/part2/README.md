@@ -177,7 +177,7 @@ Total Cycles = ???
 * Your tool should read in a file name through the command line arguments for what file is being analyzed (e.g. ./tool barbones.s)
   * (hint, investigate what argc and argv are).
 * barebones.s is provided to be used as an example input file for your tool.
-  * Within barebones, there are some questions for you to answer. Modify the source file with your answers.
+  * Within barebones, **there are some questions for you to answer**. Modify the source file with your answers.
 * You will modify a file called tool.c which you will implement your tool in. 
   * At the very least, your program should output counts for: ADD, SUB, MUL, DIV, MOV, LEA, PUSH, POP, RET.
     * i.e. For your analysis (and for the sake of simplicity), consider ADDQ, ADDB, ADDL, etc. each as an 'ADD' instruction.
