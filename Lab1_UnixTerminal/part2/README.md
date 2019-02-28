@@ -140,7 +140,7 @@ The C programming language has a 'goto' command, search how to use it if you hav
 
 - For part 1, add your .S files that you have generated to this repository.
   - Note this submission will be auto graded for completion (i.e. save the file names as shown).
-  - Note it will be helpful to discuss your observations, and write in comments in the files for your records.
+  - Add your observations in the appropriate response/observations section for each code.
 
 # Going Further
 
