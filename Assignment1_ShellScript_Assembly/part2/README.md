@@ -80,7 +80,7 @@ Here are some of the Python commands written out for your convenience.
     
 - Finally typing in `quit` will exit gdb when you are done.
 
-## Small exercise
+## Your exercise
 
 Run gdb on the program *prog1* that is included in this repository.
 
