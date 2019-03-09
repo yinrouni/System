@@ -93,7 +93,7 @@ The C programming language has a 'goto' command, search how to use it if you hav
 
 ### Response/Observations
 
-*Write here what kind of jmp statement is inserted*
+- jmp (unconditional) and je (jump if equals to 0).
 
 ## Compiler generated assembly 6 - For-loops
 - Write a C program using a for-loop that counts to 5.
@@ -104,7 +104,7 @@ The C programming language has a 'goto' command, search how to use it if you hav
 
 ### Response/Observations
 
-*Write here a note about where the code goes for the condition statement.*
+- At the end.
 
 ## Compiler generated assembly 7 - Switch Statements
 
