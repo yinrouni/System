@@ -90,9 +90,9 @@ It has been compiled with debugging symbols(*-g*) so you may investigate and vie
 
 In a brief sentence or two.
 
-1. What was the bug?
-2. What line did the bug occur?
-3. What is the fix for the bug?
+1. What was the bug? No such file or directory.
+2. What line did the bug occur? 15
+3. What is the fix for the bug? Replace the dinctionary with an existed one.
 
 ## Aside: Core dump
 
