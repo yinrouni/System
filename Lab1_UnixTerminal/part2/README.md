@@ -116,7 +116,7 @@ The C programming language has a 'goto' command, search how to use it if you hav
 
 ### Response/Observations
 
-*Write here your observations with a switch statement*
+- A switch statement generates a binary search. It is optimal.
 
 ## Compiler generated assembly 8 - Add Function
 
@@ -130,7 +130,7 @@ The C programming language has a 'goto' command, search how to use it if you hav
 
 ### Response/Observations
 
-*Write here where popq is called*
+- At the end of the function add.
 
 # More resources to help
 
