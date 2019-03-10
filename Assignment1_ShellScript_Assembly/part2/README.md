@@ -190,20 +190,20 @@ Total Cycles = ???
 Our Cycle Count Tool is what we call a 'static analysis'. That is, it uncovers information about our programs before it is running (during compile-time). Given that our tool uncovers information before the program, what is (at least) one pro of this, and one con you can think of?
 
 Pro:
-1. *TODO: EDIT README WITH YOUR ANSWER HERE*
+1. The static instruction count is the number of instruction the program has.It can analyze the program without running it. As a result, it will be take less time to complete and it's more efficient.
 
 Con:
-1. *TODO: EDIT README WITH YOUR ANSWER HERE*
+1. It's hard to detect the errors in the program, and the result is just an approximation. For example you have a loop in your program then some instructions get executed more than once. Also, in the presence of branches, some instructions may not be executed at all. It will lead to a huge difference for the actual number of instructions executed.
 
 ## Dyanmic Analysis
 
 The opposite of a static analysis is a dynamic analysis. Dynamic analysis tools record and return information about programs that are in the process or have finished executing. An example of a dynamic analysis tool is [valgrind](http://valgrind.org/). What do you think a pro and con of dynamic analysis would be?
 
 Pro:
-1. *TODO: EDIT README WITH YOUR ANSWER HERE*
+1. The dynamic instruction count is the actual number of instructions executed by the CPU for a specific program execution. And it can detect errors while running.
 
 Con:
-1. *TODO: EDIT README WITH YOUR ANSWER HERE*
+1. It may take more time to analyze by running the program instaed of simply scan it. And dynamic analyses can miss bugs because they can’t check every possible program path.
 
 
 # Rubric
