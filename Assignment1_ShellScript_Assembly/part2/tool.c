@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Turn the string into lowercase.
 char *strlwr(char *s)
 {
     char *p;
@@ -12,6 +13,16 @@ char *strlwr(char *s)
             *p = *p - 'A' + 'a';
     }
     return s;
+}
+
+// Get the substring of string s, from index start to index end.
+void  substring(char* sub, char *s, int start, int end){
+    int j = 0;
+    int i;
+    for (i = start; i < end; i++){
+        sub[j] = s[i];
+        j ++;
+    }
 }
 
 
@@ -34,46 +45,34 @@ int main(int argc, char** argv){
     ins[8] = "push";
     
     FILE* targetFile  = fopen(argv[1], "r");
-    char* letter = (char *) malloc(sizeof (char) * 100);
-    char* letters = (char*) malloc(sizeof(char) * 4);
-    char* lowerLetters = (char*) malloc(sizeof(char) * 4);
-    char* lts = (char*) malloc(sizeof(char) * 3);
-    char* lowerLts = (char*) malloc(sizeof (char) * 3);
+    char letter[100];
     while(!feof(targetFile)){
-        letter = fgets(letter, sizeof (char) * 100, targetFile);
+        fgets(letter,100, targetFile);
         if (letter == NULL){
 	    break;
 	}
-	int i;
-        for (i = 0; i < 4; i ++){
-            letters[i] = letter[i + 1];
-        }
-        lowerLetters= strlwr(letters);
-        if (strcmp(lowerLetters, "push") == 0){
-            counter[8] ++;
-}
-        else{
-            int i;
-            for (i = 0; i < 3; i ++){
-                lts[i] = letter[i+1];
-            }
-            lowerLts = strlwr(lts);
-            int j;
-            for (j = 0; j < 8; j++){
-                if (strcmp(lowerLts, ins[j]) == 0){
-                    counter[j] ++;
-                    break;
-                }
-            }
-        }
 
+        char*cs = (char*)malloc(sizeof(char) * 4);
+	substring(cs, letter,1,5);
+        if( strcmp(strlwr(cs), ins[8]) == 0){
+            counter[8]++;
+            free(cs);
+	    continue;
+        }
+	char* c = (char*)malloc(sizeof(char)*3);
+	substring(c,cs,0,3);
+	int i;
+        for (i = 0 ; i < 8; i ++){
+            if (strcmp(strlwr(c), ins[i]) == 0){
+                counter[i] ++;
+                break;
+            }
+        }
+	free(cs);
+	free(c);
     }
+
     fclose(targetFile);
-    free(letters);
-    free(lts);
-    free(letter);
-    free(lowerLetters);
-    free(lowerLts);
     int n;
     int sum =0;
     int cycles = 0;
