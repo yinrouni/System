@@ -116,7 +116,7 @@ The C programming language has a 'goto' command, search how to use it if you hav
 
 ### Response/Observations
 
-- A switch statement generates a binary search. It is optimal.
+- A switch statement generates conditional codes and branches. It is optimal.
 
 ## Compiler generated assembly 8 - Add Function
 
