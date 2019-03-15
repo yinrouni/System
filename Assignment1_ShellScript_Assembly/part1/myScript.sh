@@ -14,7 +14,7 @@
 # we use 'ls' command to list all file and directories in the current directories. In this way, 
 # we can decide if we find the target file or where we have to keep searching. However, there is 
 # a drawback in the 'ls' command. When there is a large number of files and directories in the
-# current directoriesy, and the target file is in a nested dictionary which is hard to access in
+# current directory, and the target file is in a nested dictionary which is hard to access in
 # one step simply. 
 
 # Sometimes we need a more visual overview of the nested files and directories.
@@ -23,12 +23,12 @@
 # of files. 'tree' lists the files in the current directory. Upon completion of listing all the
 # files and directories found, 'tree' returns the total number of the files and directories listed.
 
-# 'tree' can easily visualizing directory structures. Furthermore, it can mark the files and 
-# directories in different colors according to the their file type. It will user to find what they
+# 'tree' can easily visualize directory structures. Furthermore, it can mark the files and 
+# directories in different colors according to the file type. It will user to find what they
 # want easily and specify the file type. 
 
-# Meanwhile, when the targe file is exactly in the current directory and there are lots of other
-# files anf nested directories there. It can make it harder to notice the target using 'tree' 
+# Meanwhile, when the target file is exactly in the current directory and there are lots of other
+# files and nested directories there. It can make it harder to notice the target using 'tree' 
 # command. Instead, 'ls' command works better in this case. 
 
 # 'tree' and 'ls' commands can be applied effectively in different cases. Both of them have their
@@ -76,10 +76,10 @@
 
 # First, 'ls' command will be executed to list all the files and directories in the current
 # directory without display any nested files and directories. If the target file is in the current 
-# directory, users can find it easily. It can make the porcess more clear. 
+# directory, users can find it easily. It can make the process more clear. 
 # It will also print out the number of directories inside.
 
-# Then, echo "==========", as a seperate line between ls and tree output. It can avoid the ambiguity
+# Then, echo "==========", as a separate line between ls and tree output. It can avoid the ambiguity
 # the two output.
 
 # Finally, execute 'tree -C' command to visualize directory structures. Display all the nested files
