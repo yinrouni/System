@@ -111,8 +111,8 @@ tree -C
 # │   │   └── test.c
 # │   └── test.txt
 # └── test1
-
-# 3 directories, 5 files
+#     └── test1.txt
+# 3 directories, 6 files
 
 # (The '.' on the third line should be in blue,
 #  and the test in inside_test should be in green.)
