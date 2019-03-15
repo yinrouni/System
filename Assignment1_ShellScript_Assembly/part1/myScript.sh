@@ -6,6 +6,8 @@
 # You might start out by first saying the purpose of the script and
 # demonstrating its usage.
 
+# I don't want it to be shared on piazza board.
+
 # Problem Statement: 
 
 # Usually when we search for different files and dictionaries within the computer system,
@@ -74,7 +76,8 @@
 
 # First, 'ls' command will be executed to list all the files and directories in the current
 # directory without display any nested files and directories. If the target file is in the current 
-# directory, users can find it easily. It can h=make the porcess more clear.
+# directory, users can find it easily. It can make the porcess more clear. 
+# It will also print out the number of directories inside.
 
 # Then, echo "==========", as a seperate line between ls and tree output. It can avoid the ambiguity
 # the two output.
@@ -86,16 +89,30 @@
 # usage: sh myscript.sh
 
 ls
+echo " "
+echo "total directories inside: "
+ls | wc -l
 echo "==============================="
 tree -C
 
 
 # Example of output:
-# myScript.sh  Readme.md
+# myScript.sh  Readme.md	test  test1
+ 
+# total directories inside: 
+# 4
 # ===============================
 # .
 # ├── myScript.sh
-# └── Readme.md
-# 
-# 0 directories, 2 files
-# (The '.' on the third line should be in blue.)
+# ├── Readme.md
+# ├── test
+# │   ├── inside_test
+# │   │   ├── test
+# │   │   └── test.c
+# │   └── test.txt
+# └── test1
+
+# 3 directories, 5 files
+
+# (The '.' on the third line should be in blue,
+#  and the test in inside_test should be in green.)
