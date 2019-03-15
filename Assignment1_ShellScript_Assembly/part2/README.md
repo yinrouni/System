@@ -193,7 +193,7 @@ Pro:
 1. The static instruction count is the number of instruction the program has.It can analyze the program without running it. As a result, it will be take less time to complete and it's more efficient.
 
 Con:
-1. It's hard to detect the errors in the program, and the result is just an approximation. For example you have a loop in your program then some instructions get executed more than once. Also, in the presence of branches, some instructions may not be executed at all. It will lead to a huge difference for the actual number of instructions executed.
+1. It's hard to detect the errors in the program, and the result is just an approximation. For example you have a loop in your program then some instructions get executed more than once. Also, in the presence of branches, some instructions may not be executed at all. It will lead to a huge difference from the actual number of instructions executed.
 
 ## Dyanmic Analysis
 
@@ -203,7 +203,7 @@ Pro:
 1. The dynamic instruction count is the actual number of instructions executed by the CPU for a specific program execution. And it can detect errors while running.
 
 Con:
-1. It may take more time to analyze by running the program instaed of simply scan it. And dynamic analyses can miss bugs because they can’t check every possible program path.
+1. It may take more time to analyze by running the program instaed of simply scan it. And dynamic analyses can als0 miss bugs because they can’t check every possible program path.
 
 
 # Rubric
