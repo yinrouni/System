@@ -81,26 +81,26 @@ int main(int argc, char** argv){
         printf("%s: %d\n", ins[n], counter[n]);
         sum = sum + counter[n];
         switch (n) {
-            // 'add', 'sub', 'mov', 'pop', 'push': latency = 1.
+            // 'add', 'sub', 'mov': latency = 0.5
 	    case 0:
             case 1:
+            case 2:
             case 4:
-            case 6:
+                cycles += counter[n] * 0.5;
+                break;
+	    // 'lea', 'push', 'ret': latency = 1
+            case 5:
+            case 7:
 	    case 8:
                 cycles += counter[n];
                 break;
-	    // 'mul', 'ret': latency = 3
-            case 2:
-            case 7:
-                cycles += counter[n] * 3;
-                break;
-	    // 'lea': latency = 2
-	    case 5:
+	    // 'pop': latency = 2
+	    case 6:
                 cycles += counter[n] * 2;
                 break;
-	    // 'div': latency = 24
+	    // 'div': latency = 6
             case 3:
-                cycles += counter[n] * 24;
+                cycles += counter[n] * 6;
                 break;
         }
     }
