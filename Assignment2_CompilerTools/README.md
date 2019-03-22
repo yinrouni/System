@@ -1,8 +1,8 @@
 # TODO Please edit the following information in your assignment
 
-- Name:
-- How many hours did it take you to complete this assignment?
-- Did you collaborate with any other students/TAs/Professors?
+- Name:Rouni Yin
+- How many hours did it take you to complete this assignment?2
+- Did you collaborate with any other students/TAs/Professors?Yes
 - Did you use any external resources? (Cite them below)
   - tbd
   - tbd
