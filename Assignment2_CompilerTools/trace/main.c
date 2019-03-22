@@ -7,6 +7,7 @@ void msg(){
 
 
 int main(){
+	extern int counter;
 	time_t start, end;
 	start = time(NULL);
 	int i;
@@ -14,6 +15,7 @@ int main(){
 		msg();
 	}
 	end = time(NULL);
+	printf("functions called:%d\n", counter);
 	printf("time: %f\n",difftime(end, start)); 
 	return 0;
 }
