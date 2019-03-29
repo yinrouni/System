@@ -9,7 +9,9 @@
 
 #define BUF_SZ 80
 
+//the commands divided by space.
 char commands[80][80];
+//the current path
 char curPath[80];
 
 // Create a signal handler
@@ -23,10 +25,11 @@ int splitCommands(char command[BUF_SZ]);
 int callHelp();
 int callExit();
 int callGuessingGame();
-int callLs(int commandNum);
+int callCommand(int commandNum);
 int isPipe(int commandNum);
 int execvPipe(char* commandBefore[], char* commandAfter[]);
 
+//Get current working directory.
 int getCurWorkDir(){
 	char* result = getcwd(curPath, BUF_SZ);
 	if (result == NULL){
@@ -37,29 +40,30 @@ int getCurWorkDir(){
 	}
 }
 
+// If there is any error, exit the most recently launched shell.
 int main(){
+	// to track the status of the command execution.
 	int result;
 	// Install our signal handler
 	signal(SIGINT, sigint_handler);
 	printf("This is a shell.\n");
 	printf("You can only terminate by pressing Ctrl+C\n");
-	char command[81];
+	char command[BUF_SZ];
 	while(1){
 		printf("mini-shell>");
 		scanf("%[^\n]",command);
-		getchar();
-	//	printf("Running forever!\n");
-//		printf("command: %s\n", command);
+		getchar();  // deal with '\n' along with the input
 		
 		int commandNum = splitCommand(command);
 		
 		if (commandNum != 0){ // The input is not null.
 			if (isPipe(commandNum)){
-				//
+				// Get the command before the pipe. 
+				// The command before the pipe should end up with NULL.
 				char* commandBefore[BUF_SZ];
 				char s [20];
    				s [0] = '\0';
-   				strcat(s, "/bin/");
+   				//strcat(s, "/bin/");
     				strcat(s, commands[0]);
     				commandBefore[0] = s;
        				int m;
@@ -67,33 +71,39 @@ int main(){
         				commandBefore[m] = commands[m];
 				}
 				commandBefore[m + 1] = NULL;
-
-
+				
+				// Get the command after the pipe.
+				// The command after the pipe should end up with NULL as well.
 				char* commandAfter[BUF_SZ];
 				char t [20];
    				t[0] = '\0';
-    				strcat(t, "/usr/bin/");
     				strcat(t, commands[isPipe(commandNum)]);
     				commandAfter[0] = t;
         			int n;
 				int k;
-        			for (n = isPipe(commandNum) + 1, k = 1; n < commandNum; n ++, k ++){
+				for (n = isPipe(commandNum) + 1, k = 1; n < commandNum; n ++, k ++){
         				commandAfter[k] = commands[n];
 				}
+				if (k == 1){
+				commandAfter[k] = NULL;}
+				else{
 				commandAfter[k + 1] = NULL;
-				
+				}
+	
 				result = execvPipe(commandBefore, commandAfter);
 				if (!result){
-					printf("exit error\n");
-					exit(-1);
+					printf("pipe error\n");
+					continue;
 				}
 			}
+			//commands without a pipe.
+
 			// command: exit
 			else if (strcmp(commands[0], "exit") == 0){
 				result = callExit();
 				if (!result){
 					printf("exit error\n");
-					exit(-1);
+					continue;
 				}
 			}
 			
@@ -101,7 +111,8 @@ int main(){
 			else if (strcmp(commands[0], "help") == 0){
 				result = callHelp();
 				if (!result){
-					exit(-1);
+					printf("help error\n");
+					continue;
 				}
 			}
 			
@@ -114,27 +125,37 @@ int main(){
 				else{
 					result = getCurWorkDir();
 					if (!result){
-						exit(-1);
+						printf("cd error\n");
+						continue;
 					}
 				}
 			}
+
+			// command: guessinggame
 			else if (strcmp(commands[0], "guessinggame") == 0){
                 		result = callGuessingGame();
                 		if (!result){
-                    			exit(-1);
+                    			printf("guessing game error\n");
+					continue;
 				}
 			}
 			
-            else {
-                result = callLs(commandNum);
-                if (!result){
-                    exit(-1);
-                }
-		}
-	} 
+			// other non builtin commands
+        	    	else {
+                		result = callCommand(commandNum);
+                		if (!result){
+                    			printf("non-builtin command error\n");
+					continue;
+                		}
+			}
+		} 
+	}
+ 	return 0;
 }
- return 0;
-}
+
+// Split the commands by spaces in to an array of strings.
+// Each String is a command.
+// Return the number of parts the command has.
 int splitCommand(char command[BUF_SZ]){
     	int num = 0;
 	int i, j;
@@ -160,6 +181,8 @@ int splitCommand(char command[BUF_SZ]){
 	return num;
 }
 
+// Command cd implement.
+// A command cd should have 2 part, "cd" and the destination.
 int callCd(int commandNum){
 	int result = 1;
 	
@@ -175,13 +198,21 @@ int callCd(int commandNum){
 	return result;
 }
 
+// Command help implement.
+// Print all the builtin commands and related information.
 int callHelp(){
 	printf("Help:\n");
-	
+	printf("There are 4 built-in command in this mini shell.\n");
+	printf("cd\tmoving up or down the directory tree.\n");
+	printf("help\tprint out all of the built-in commands.\n");
+	printf("exit\tterminate the shell.\n");
+	printf("guessinggame\tplay a guessing game (guess a number from 0 - 10)\n");	
 
 	return 1;
 }	
 
+// Command exit implement.
+// Exit the shell.
 int callExit(){
 	pid_t pid = getpid();
 	if (kill(pid, SIGTERM) == -1){
@@ -192,6 +223,9 @@ int callExit(){
 	}
 }
 
+// Command guessinggame implements
+// Guessing a number from 0 - 10.
+// You have 5 chances.
 int callGuessingGame(){
     srand(time(NULL));
     int target = rand() % 10 + 1;
@@ -229,16 +263,17 @@ int callGuessingGame(){
     return 1;
 }
 
-int callLs(int commandNum){
+//Non builtin commands implemtens.
+//Execution the command in a child process created by fork().
+//If the command fail to be executed in the child process, 
+//reutrn the error message, command not found.
+int callCommand(int commandNum){
     char* myargv[commandNum + 1];
     char s[20];
     s[0] = '\0';
 
-    strcat(s, "/bin/");
     strcat(s, commands[0]);
-  //  myargv[0]=strcat("/bin/", commands[0]);
     myargv[0] = s;
- // 	printf("%s", myargv[0]);
     int i;
     for (i = 1; i < commandNum; i++){
     	myargv[i] = commands[i];
@@ -247,17 +282,20 @@ int callLs(int commandNum){
     
     int child_status; 
     if (fork() == 0){
-        execve(myargv[0],myargv,NULL);
+        execvp(myargv[0],myargv);
         exit(1);
     }
-else{
-    wait(&child_status); 
-    if (WEXITSTATUS(child_status) > 0){
+    else{
+        wait(&child_status); 
+        if (WEXITSTATUS(child_status) > 0){
 	printf("Command not found--Did you mean something else?\n");
     }
     return 1;
     }
 }
+
+// If there is no pipe in the command, reutrn 0;
+// If there is a pipe in the command, return the index of the command following the pipe.
 int isPipe(int commandNum){
 	int i;
 	for (i = 0; i < commandNum; i ++){
@@ -268,6 +306,12 @@ int isPipe(int commandNum){
 	return 0;
 }
 
+// Execute commands with a pipe.
+// Create a child process in the child process created in the shell.
+// Execute the command before the pipe in the child's child process, 
+// pass the output to its parent process(i.e. the child process).
+// Then Execute the command after the pipe in the child process.
+// If one of the 2 commands fails, return the error message, command not found.
 int  execvPipe(char* commandBefore[], char* commandAfter[]){
     int child_status1;
     pid_t pid = fork();
@@ -280,7 +324,7 @@ int  execvPipe(char* commandBefore[], char* commandAfter[]){
             
             close(fd[0]);
             dup2(fd[1], 1);
-            execve(commandBefore[0], commandBefore, NULL);
+            execvp(commandBefore[0], commandBefore);
             exit(1);
 	}
         wait(&child_status2);
@@ -290,7 +334,7 @@ int  execvPipe(char* commandBefore[], char* commandAfter[]){
         close(fd[1]);
         
         dup2(fd[0], 0);
-        execve(commandAfter[0], commandAfter, NULL);
+        execvp(commandAfter[0], commandAfter);
         exit(1);
     }
     else{
