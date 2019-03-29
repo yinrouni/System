@@ -115,9 +115,9 @@ SYNOPSIS:
 Play a guessing game.
 
 mini-shell>guessinggame
-===============================
+\===============================
 CPU Says: Pick a number 1-10
-===============================
+\===============================
 Make a guess: 5
 No guess lower!
 Make a guess: 2
