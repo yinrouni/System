@@ -1,11 +1,14 @@
 TODO Please edit the following information in your assignment
 
-- Name:
-- How many hours did it take you to complete this assignment?
-- Did you collaborate with any other students/TAs/Professors?
+- Name:Rouni Yin
+- How many hours did it take you to complete this assignment? 3 days
+- Did you collaborate with any other students/TAs/Professors? yes
 - Did you use any external resources? (Cite them below)
-  - tbd
-  - tbd
+  - https://www.tutorialspoint.com/unix/unix-pipes-filters.htm
+  - https://linux.die.net/man/3/execvp
+  - http://www.cplusplus.com/reference/cstring/strtok/
+  - http://man7.org/linux/man-pages/man2/chdir.2.html
+  - https://www.geeksforgeeks.org/c-program-demonstrate-fork-and-pipe/
 - (Optional) What was your favorite part of the assignment?
 - (Optional) How would you improve the assignment?
 
@@ -108,20 +111,49 @@ At a high level, implementing mini-shell takes the following components:
 -----------------------------------------------------
 NAME: 
 
-*edit me*
+guessinggame
 
 SYNOPSIS: 
 
-*edit me and add in a short description of the command and its usage*
+Play a guessing game.
+
+mini-shell>guessinggame
+
+\===============================
+
+CPU Says: Pick a number 1-10
+
+\===============================
+
+Make a guess: 5
+
+No guess lower!
+
+Make a guess: 2
+
+No guess higher!
+
+Make a guess: 3
+
+No guess higher!
+
+Make a guess: 4
+
+You got it!
+
+mini-shell>
 
 DESCRIPTION:
 
-*Write a longer description of what he command does*
+Guess a number 0 - 10. The target number is generated randomly. Users have 5 chances. They will get a hint after every guessing. If thay get the target number within 5 guesses, they win; otherwise, they lose.
 
 NOTES:
 
-*Enter two or three sentences (minimum) in how you implemented the built-in command.*
-
+- Generate the target from 0 - 10 randomly.
+- Set up a counter loop: 5 chances to guess.
+ - Prompt the user's guess.
+ - Compare the guess with the target, and print corresponding hint.
+ - If users guess correctly, break the loop; otherwise, continue until they run out of their chance.
 -----------------------------------------------------
 
 ## Some helpful things to ponder
