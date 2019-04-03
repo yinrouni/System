@@ -29,7 +29,7 @@ Let us see how parallel we can get (i.e. how many artists) by analyzing our mach
   
 **Discuss with your partner:** (And write 1 sentence about your findings here)
 
-Every server machine has cpu with 8 cores.
+There are 32 machines. Every server machine has cpu with 8 cores. Each core can execute threads. 8 cores can work respectively. In this way,  we can get parallel.
 
 ### Task 2 - fork() parallelism
 
@@ -95,7 +95,7 @@ Let us modify our Task 2:
 
 **Discuss with your partner:** (And write 1 sentence about where you think we are forgetting to reclaim memory)
 
-*Write your response here*
+Since fork() produces an identical child process as the parent, there is also a malloc in child process. In the program, we only freed the memory in the parent process, forgetting to reclaim memory in child process.
 
 ### Task 4 - Synchronization with fork()
 
@@ -134,7 +134,9 @@ Let us now have our artists work on one giant masterpiece (as originally intende
 
 **Discuss with your partner:** (And write 1 sentence about the difference between fork and vfork)
 
-*Write your response here*
+vfork(): The child process will be executed first, and it shares memor with parent before calling exec or exit. The parent porcess will be executed only after calling exec or exit in child process.
+
+fork(): The child process and parent won't share memory, and it can't be guarantee child or parent process will be execute first without wait().
 
 Scroll down a bit to see the answers after reading the man page.
 
@@ -343,7 +345,7 @@ Once again, Michaelangelo, Rapheal, Donatello, and Leonardo are amongst 64 great
 
 **Discuss with your partner:** (And write 1 sentence if you think you need to use locks anywhere in this solution)
 
-*Write your response here*
+Since the array of canvas and counter are global variable, threads are working on the same ones. We need a lock to protec the shared canvas and counter. So a lock is used before calling paint and count in the thread.
 
 (Here is a quite reminder below of using threads for your reference.)
 
