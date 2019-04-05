@@ -1,11 +1,12 @@
 TODO Please edit the following information in your assignment
 
-- Name:
-- How many hours did it take you to complete this assignment?
-- Did you collaborate with any other students/TAs/Professors?
+- Name:Rouni Yin
+- How many hours did it take you to complete this assignment? 10
+- Did you collaborate with any other students/TAs/Professors? Yes
 - Did you use any external resources? (Cite them below)
-  - tbd
-  - tbd
+  - https://www.youtube.com/watch?v=_8-ht2AKyH4
+  - https://en.wikipedia.org/wiki/Starvation_(computer_science)
+  - https://computing.llnl.gov/tutorials/pthreads/#MutexOverview
 - (Optional) What was your favorite part of the assignment?
 - (Optional) How would you improve the assignment?
 
@@ -179,8 +180,9 @@ This means you need to enforce some locking mechanism.
 
 **Discuss(in a few sentences)** how starvation may occur in the above program, and how you would possibly fix it? (You may fix it in your implementation if you like--the art may become more beautiful!)
 
-*edit and add your response here*
+Starvation is normally caused by deadlock in that it causes a process to freeze. Two or more processes become deadlocked when each of them is doing nothing while waiting for a resource occupied by another program in the same set. So we can use trylock other then lock. if the mutex is already locked, the routine will return immediately with a "busy" error code. This routine may be useful in preventing deadlock conditions.
 
+On the other hand, a process is in starvation when it is waiting for a resource that is continuously given to other processes. If there are lots of artists, the allocation of recourse may be unfair. It is possible for starvatio occurs. A possible solution to starvation is to use a scheduling algorithm with priority queue that also uses the aging technique. Aging is a technique of gradually increasing the priority of processes that wait in the system for a long time.
 ## Part 4 - Catch Up
 
 Often times in a semester long course, a few weeks in you can get in the habit of rushing through material and not truly understanding what is going on. For part 4, you will play a little catch up.
@@ -198,7 +200,24 @@ Some tutorial series that look reasonable (you can search around for others):
 	
 **Write a few sentences here:** describing what you got caught up on. If you were caught up on 100% of things, write a few sentences about what new things you sat down and learned for 1-2 hours.
 
-(*write your sentences here, share any tutorials you found*)
+Starvation, deadlock vs. livelock:
+Starvation occurs when one or more threads in your program are blocked from gaining access to a resource and, as a result, cannot make progress. 
+Deadlock, the ultimate form of starvation, occurs when two or more threads are waiting on a condition that cannot be satisfied. Deadlock most often occurs when two (or more) threads are each waiting for the other(s) to do something.
+A livelock is similar to a deadlock, except that the states of the processes involved in the livelock constantly change with regard to one another, none progressing. Livelock is a special case of resource starvation; the general definition only states that a specific process is not progressing.
+
+trylock vs. lock:
+For trylock, if the mutex is already locked, the routine will return immediately with a "busy" error code. This routine may be useful in preventing deadlock conditions, as in a priority-inversion situation.
+For lock, If the mutex is already locked by another thread, this call will block the calling thread until the mutex is unlocked.
+
+4 segments o memory:
+1. code(text) to store instruction to be executed.
+2. static or global: as long as the appliction is running.
+3. stack for function calls and local variables.
+4. heap(dynamic memory): not fixed, free store. 
+
+
+
+
 
 ## Rubric
 
