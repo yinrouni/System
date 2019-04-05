@@ -7,9 +7,12 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <time.h>
+#include<sys/timeb.h>
 // ===================== Setup our Canvas =====================
 #define CANVAS_WIDTH 256
 #define CANVAS_HEIGHT 256
+
+pthread_mutex_t mutex;
 
 // Our canvas is a shared piece of memory that each artist can access.
 // Within our canvas, every pixel has a red, green, and blue component.
@@ -57,8 +60,10 @@ const int movement[][2] ={
 // lock structure.
 // The intent is to call this function early in main.
 void initCanvas(){
-	for(int x =0; x < CANVAS_WIDTH; ++x){
-		for(int y =0; y < CANVAS_HEIGHT; ++y){
+	int x;
+	int y;
+	for( x =0; x < CANVAS_WIDTH; ++x){
+		for(y =0; y < CANVAS_HEIGHT; ++y){
 			canvas[x][y].r = 255;
 			canvas[x][y].g = 255;
 			canvas[x][y].b = 255;
@@ -79,8 +84,10 @@ void outputCanvas(){
 	fputs("P3\n",fp);
 	fputs("256 256\n",fp);
 	fputs("255\n",fp);
-	for(int x =0; x < CANVAS_WIDTH; ++x){
-		for(int y =0; y < CANVAS_HEIGHT; ++y){
+	int x;
+	int y;
+	for(x =0; x < CANVAS_WIDTH; ++x){
+		for(y =0; y < CANVAS_HEIGHT; ++y){
 			fprintf(fp,"%d",canvas[x][y].r);
 			fputs(" ",fp);		
 			fprintf(fp,"%d",canvas[x][y].g);
@@ -102,9 +109,8 @@ void* paint(void* args){
 
     // Our artist will now attempt to paint 5000 strokes of paint
 	// on our shared canvas
-	for(int i =0; i < 5000; ++i){
-
-        // Store our initial position
+	int i;
+	for(i =0; i < 5000; ++i){
         int currentX = painter->x;
         int currentY = painter->y;
         // Generate a random number from 0-7
@@ -125,21 +131,34 @@ void* paint(void* args){
  
         // Try to paint
         // paint the pixel if it is white.
-        if( canvas[painter->x][painter->y].r == 255 &&
-            canvas[painter->x][painter->y].g == 255 &&
-            canvas[painter->x][painter->y].b == 255){
-                canvas[painter->x][painter->y].r = painter->r;
-                canvas[painter->x][painter->y].g = painter->g;
-                canvas[painter->x][painter->y].b = painter->b;
-        }else{
-        // If we cannot paint the pixel, then we backtrack
-        // to a previous pixel that we own.
-            painter->x = currentX;
-            painter->y = currentY;
-        }
-    }
+
+		if( canvas[painter->x][painter->y].r == 255 &&
+            	canvas[painter->x][painter->y].g == 255 &&
+            	canvas[painter->x][painter->y].b == 255){
+			if ( pthread_mutex_trylock( &canvas[painter->x][painter->y].lock) == 0 ){
+
+                		canvas[painter->x][painter->y].r = painter->r;
+                		canvas[painter->x][painter->y].g = painter->g;
+                		canvas[painter->x][painter->y].b = painter->b;
+        	 		pthread_mutex_unlock(&(canvas[painter->x][painter->y].lock));
+    			}
+			
+			 else{
+                    		// If the pixel is locked, then we backtrack
+                    		// to a previous pixel that we own.
+                   	    	painter->x = currentX;
+                            	painter->y = currentY;}
+		}
+		else{
+        	// If we cannot paint the pixel, then we backtrack
+        	// to a previous pixel that we own.
+            	painter->x = currentX;
+            	painter->y = currentY;
+        	}
+}
 }
 
+	
 // ================== Program Entry Point ============
 int main(){
 	// Initialize our 'blank' canvas
@@ -185,7 +204,9 @@ int main(){
 	pthread_t Raphael_tid;
 	pthread_t Leonardo_tid;
     // Initialize a seed for our random number generator
-    srand(time(NULL));
+	struct timeb timer;
+	ftime(&timer);
+    	srand(timer.time * 1000 + timer.millitm);
 	
 	// Create our threads for each of our expert artists
 	pthread_create(&Michaelangelo_tid,NULL,(void*)paint,Michaelangelo);
@@ -194,10 +215,18 @@ int main(){
 	pthread_create(&Leonardo_tid,NULL,(void*)paint,Leonardo);
 
     // TODO: Add 50 more artists 
-    // int rookieArtists = 50;
-    // pthread_t moreArtists_tid[rookieArtists];
-	// artist_t* moreArtists = malloc(..);
-    // for(int i =0; i < rookieArtists; ++i){
+    	int rookieArtists = 50;
+    	 pthread_t moreArtists_tid[rookieArtists];
+	artist_t* moreArtists = malloc(sizeof(artist_t) * 50);
+         int i;
+         for(i =0; i < rookieArtists; ++i){	
+	     moreArtists[i].x = rand() % 256;
+             moreArtists[i].y = rand() % 256;
+             moreArtists[i].r = rand() % 256;
+             moreArtists[i].g = rand() % 256;
+             moreArtists[i].b = rand()% 256;
+             pthread_create(&moreArtists_tid[i], NULL, (void*)paint, &moreArtists[i]);
+         }
 
 	// Join each with the main thread.  
 	// Do you think our ordering of launching each thread matters?
@@ -208,7 +237,11 @@ int main(){
 
     // TODO: Add the join the 50 other artists threads here	
     // for (...)
-
+int j;
+             for (j = 0; j < rookieArtists; j++){
+                 pthread_join(moreArtists_tid[j], NULL);
+             }
+        
     // Save our canvas at the end of the painting session
 	outputCanvas();
 	
@@ -217,7 +250,7 @@ int main(){
     free(Donatello);
     free(Raphael);
     free(Leonardo);
-
+    free(moreArtists);
     // TODO: Free any other memory you can think of
 
 	return 0;
