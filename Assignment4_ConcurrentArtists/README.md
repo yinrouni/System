@@ -180,7 +180,7 @@ This means you need to enforce some locking mechanism.
 
 **Discuss(in a few sentences)** how starvation may occur in the above program, and how you would possibly fix it? (You may fix it in your implementation if you like--the art may become more beautiful!)
 
-Starvation is normally caused by deadlock in that it causes a process to freeze. Two or more processes become deadlocked when each of them is doing nothing while waiting for a resource occupied by another program in the same set. So we can use trylock other then lock. if the mutex is already locked, the routine will return immediately with a "busy" error code. This routine may be useful in preventing deadlock conditions.
+Starvation is normally caused by deadlock in that it causes a process to freeze. Two or more processes become deadlocked when each of them is doing nothing while waiting for a resource occupied by another program in the same set. So we can use trylock rather than lock. if the mutex is already locked, the routine will return immediately with a "busy" error code. This routine may be useful in preventing deadlock conditions.
 
 On the other hand, a process is in starvation when it is waiting for a resource that is continuously given to other processes. If there are lots of artists, the allocation of recourse may be unfair. It is possible for starvatio occurs. A possible solution to starvation is to use a scheduling algorithm with priority queue that also uses the aging technique. Aging is a technique of gradually increasing the priority of processes that wait in the system for a long time.
 ## Part 4 - Catch Up
