@@ -72,6 +72,15 @@ void initCanvas(){
 	}
 }
 
+// This function will check color duplicate.
+int isSameColors(int colors[54][3], int color[3]){
+    for (int i = 0;i < 54; i ++){
+        if (colors[i][0] == color[0] && colors[i][1] == color[1] && colors[i][2] == color[2]){
+            return 1;
+        }
+    }
+    return 0;
+}
 // This function saves the canvas as a PPM.
 // This function should be called after all painting
 // operations have completed.
@@ -132,9 +141,12 @@ void* paint(void* args){
         // Try to paint
         // paint the pixel if it is white.
 
-		if( canvas[painter->x][painter->y].r == 255 &&
+		if(( canvas[painter->x][painter->y].r == 255 &&
             	canvas[painter->x][painter->y].g == 255 &&
-            	canvas[painter->x][painter->y].b == 255){
+            	canvas[painter->x][painter->y].b == 255)||
+		(canvas[painter->x][painter->y].r == painter->r  && 
+		 canvas[painter->x][painter->y].g == painter->g  && 
+		canvas[painter->x][painter->y].b == painter->b)) {
 			if ( pthread_mutex_trylock( &canvas[painter->x][painter->y].lock) == 0 ){
 
                 		canvas[painter->x][painter->y].r = painter->r;
@@ -155,7 +167,8 @@ void* paint(void* args){
             	painter->x = currentX;
             	painter->y = currentY;
         	}
-}
+	}
+	return NULL;
 }
 
 	
@@ -164,6 +177,8 @@ int main(){
 	// Initialize our 'blank' canvas
 	initCanvas();
 	
+        int colors[54][3];
+
 	// Our four expert artists
 	artist_t* Michaelangelo = malloc(sizeof(artist_t));
 	artist_t* Donatello  = malloc(sizeof(artist_t));
@@ -179,25 +194,37 @@ int main(){
 	Michaelangelo->r = 255;
 	Michaelangelo->g = 0;
 	Michaelangelo->b = 165;
+	 colors[0][0] = 255;
+        colors[0][1] = 0;
+        colors[0][2] = 165;
 	// Fill in the artist attributes
 	Donatello->x = CANVAS_WIDTH-1;
 	Donatello->y = 0;
 	Donatello->r = 128;
 	Donatello->g = 0;
 	Donatello->b = 128;
+	colors[1][0] = 128;
+        colors[1][1] = 0;
+        colors[1][2] = 128;	
 	// Fill in the artist attributes
 	Raphael->x = CANVAS_WIDTH-1;
 	Raphael->y = CANVAS_HEIGHT-1;
 	Raphael->r = 255;
 	Raphael->g = 0;
 	Raphael->b = 0;	
+	colors[2][0] = 255;
+        colors[2][1] = 0;
+        colors[2][2] = 0;
+
 	// Fill in the artist attributes
 	Leonardo->x = 0;
 	Leonardo->y = CANVAS_HEIGHT-1;
 	Leonardo->r = 0;
 	Leonardo->g = 0;
 	Leonardo->b = 255;
-
+	 colors[3][0] = 0;
+        colors[3][1] = 0;
+        colors[3][2] = 255;
     // Hold our thread id's
 	pthread_t Michaelangelo_tid;
 	pthread_t Donatello_tid;
@@ -222,9 +249,18 @@ int main(){
          for(i =0; i < rookieArtists; ++i){	
 	     moreArtists[i].x = rand() % 256;
              moreArtists[i].y = rand() % 256;
-             moreArtists[i].r = rand() % 256;
-             moreArtists[i].g = rand() % 256;
-             moreArtists[i].b = rand()% 256;
+	     while(1){
+             	moreArtists[i].r = rand() % 256;
+             	moreArtists[i].g = rand() % 256;
+            	moreArtists[i].b = rand()% 256;
+		int color[] = { moreArtists[i].r, moreArtists[i].g, moreArtists[i].b};
+                 if (!isSameColors(colors, color)){
+                     colors[i+ 4][0] = moreArtists[i].r;
+                     colors[i+ 4][1] = moreArtists[i].g;
+                     colors[i+ 4][2] = moreArtists[i].b;
+                     break;
+                 }
+             }
              pthread_create(&moreArtists_tid[i], NULL, (void*)paint, &moreArtists[i]);
          }
 
