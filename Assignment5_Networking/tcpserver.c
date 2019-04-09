@@ -29,7 +29,7 @@ int main(){
     struct sockaddr_in server_address;
     
     server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(9002); // 9002 is choosen arbitrarily. Try other ports if this does not work
+    server_address.sin_port = htons(7002); // 9002 is choosen arbitrarily. Try other ports if this does not work
     server_address.sin_addr.s_addr = htons(INADDR_ANY);
     
     bind(server_socket, (struct sockaddr*) &server_address, sizeof(server_address));
