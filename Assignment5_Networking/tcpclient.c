@@ -26,7 +26,7 @@ int main(){
     // Our client will connect to a server with the following address and port.
     struct sockaddr_in server_address;
     server_address.sin_family = AF_INET; // 32-bit IPV4 address
-    server_address.sin_port = htons(7002); // convert to the appropriate port number using htons
+    server_address.sin_port = htons(3003); // convert to the appropriate port number using htons
     server_address.sin_addr.s_addr = htons(INADDR_ANY); // Our ip address, which is localhost using INADDR_ANY
     
     // Attempt to connect
