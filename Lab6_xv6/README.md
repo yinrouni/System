@@ -32,11 +32,11 @@ Remember the `grep` command? (`man grep`) It is a handy way to search text, and 
 
 **Discuss with your partner:** *List five commands you observe with your partner that look familiar from Unix*
 
-1. *command here*
-2. *command here*
-3. *command here*
-4. *command here*
-5. *command here*
+1 ls
+2. rm
+3. sh
+4. mkdir
+5. grep
 
 # Part 3 - Extending xv6
 
@@ -91,9 +91,9 @@ int main(int argc, char *argv[]){
 
 **Discuss with your partner:** 
 
-- *In a sentence, what does types.h contain?*
-- *In a sentence, what does stat.h contain?*
-- *In a sentence, what does user.h contain? What lists of functions seem particularly interesting/useful?*
+- a list declaration for structure type definition
+- a list of declaration for types of statistics
+- 2 lists of function for system call and ulib.c. System call seems quite useful.
 
 
 # Part 5 - Implementing a System Call (Extending xv6 further).
