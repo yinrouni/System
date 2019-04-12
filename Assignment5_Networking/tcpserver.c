@@ -51,19 +51,20 @@ int main(){
         char* username = malloc(sizeof(char) * 128);
         recv(client_socket, username, sizeof(username), 0);
         printf(">%s\n", username);
-        
+   //     free(username);
         while(1){
             char* command = malloc(sizeof(char) * 128);
             recv(client_socket, command, sizeof(command), 0);
             printf("%s\n", command);
             if (strcmp("exit", command) == 0){
+			free(command);
                     break;
             }
             system(command);
-	    command = NULL;
+//	    command = NULL;
 	    free(command);
     }
-	username = NULL;
+//	username = NULL;
 	free(username);
     }
     
