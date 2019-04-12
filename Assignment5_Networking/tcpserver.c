@@ -29,7 +29,7 @@ int main(){
     struct sockaddr_in server_address;
     
     server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(7002); // 9002 is choosen arbitrarily. Try other ports if this does not work
+    server_address.sin_port = htons(3003); // 9002 is choosen arbitrarily. Try other ports if this does not work
     server_address.sin_addr.s_addr = htons(INADDR_ANY);
     
     bind(server_socket, (struct sockaddr*) &server_address, sizeof(server_address));
@@ -48,19 +48,23 @@ int main(){
         send(client_socket, server_message, sizeof(server_message), 0);
         printf("Client has joined: %d\n", server_socket);
         
-        char username[128];
-        recv(client_socket, &username, sizeof(username), 0);
+        char* username = malloc(sizeof(char) * 128);
+        recv(client_socket, username, sizeof(username), 0);
         printf(">%s\n", username);
         
         while(1){
-            char command[128];
-            recv(client_socket, &command, sizeof(command), 0);
+            char* command = malloc(sizeof(char) * 128);
+            recv(client_socket, command, sizeof(command), 0);
             printf("%s\n", command);
             if (strcmp("exit", command) == 0){
                     break;
             }
             system(command);
+	    command = NULL;
+	    free(command);
     }
+	username = NULL;
+	free(username);
     }
     
     // Close the socket
